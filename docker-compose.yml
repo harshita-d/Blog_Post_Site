@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  app:
+    # build context tell that we want to build our docker file in current directory
+    build:
+      context: .
+    ports:
+      - 8000:8000
+    # volumes are a way of mapping directroies from our system into the docker conatiner
+    # we do this so that in real time changes from our local system can be reflatect on conatiner and avoid rebuilding the conatiner
+    volumes:
+      - ./appp:/app
+    # below command is default command to run the service and we can change the command from cli
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
