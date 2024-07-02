@@ -9,6 +9,7 @@ ENV PYTHONBUFFERED 1
 
 # copying requirements file into temp/requiremnets.txt of conatiner
 COPY ./requirements.txt /tmp/requirements.txt
+COPY ./requirements.dev.txt /tmp/requirements.dev.txt
 
 # copying app from local to app in conatiner
 COPY ./app /app
@@ -19,6 +20,7 @@ WORKDIR /app
 # specifying the port
 EXPOSE 8000
 
+ARG DEV=false
 
 # first command specifies the ceation of virtual env in conatiner with name as py
 # second command upgrade the pip to latest version inside venv
@@ -33,6 +35,9 @@ EXPOSE 8000
 RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
     /py/bin/pip install -r /tmp/requirements.txt && \
+    if [ $DEV = "true" ]; \
+        then /py/bin/pip install -r /tmp/requirements.dev.txt ; \
+    fi && \
     rm -rf /tmp && \
     adduser  \
         --disabled-password \

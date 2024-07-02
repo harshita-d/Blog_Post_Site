@@ -5,12 +5,15 @@ services:
     # build context tell that we want to build our docker file in current directory
     build:
       context: .
+      # args specifies that we are runing app using docker-compose which we are using only for development we will set build args "DEV" to true
+      args:
+        - DEV=true
     ports:
       - 8000:8000
     # volumes are a way of mapping directroies from our system into the docker conatiner
     # we do this so that in real time changes from our local system can be reflatect on conatiner and avoid rebuilding the conatiner
     volumes:
-      - ./appp:/app
+      - ./app:/app
     # below command is default command to run the service and we can change the command from cli
     command: >
       sh -c "python manage.py runserver 0.0.0.0:8000"
