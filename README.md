@@ -39,3 +39,9 @@ docker-compose run --rm app sh -c "django-admin startproject app ."
 ```
 docker-compose up
 ```
+
+## Github actions
+
+- it is similar to CI/CD pipeline
+- it is an automation tool to run jobs
+- it is used for deployment, linting, and unit test
