@@ -15,8 +15,8 @@ class CommandTests(SimpleTestCase):
         patched_check.return_value = True
         call_command("wait_for_db")
 
-        # in a unit test to assert that a mock object, specifically one created using
-        # the patch function, was called exactly once with the specified arguments.
+        # in a unit test to assert that a mock object, specifically one created using  # noqa
+        # the patch function, was called exactly once with the specified arguments.  # noqa
         patched_check.assert_called_once_with(databases=["default"])
 
     @patch("time.sleep")
